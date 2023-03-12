@@ -1,81 +1,48 @@
-import React,{useState} from 'react';
+import React,{useRef} from 'react';
 import {Link} from 'react-router-dom'
 import './main.css';
-import {FaFacebook,FaInstagram,FaTwitter,FaHome} from 'react-icons/fa'
+import {FaBars,FaTimes} from 'react-icons/fa'
 function Nav(){
-     const [show,setShow]=useState(false)
-    return(
-        <div className='all-nav'>
-         
-        <div className='name'>
-            <h2>blaqstix</h2>
-            
-        </div>
-       <div>
-       <div className='appear-btn'>
-       <button onClick={()=>setShow(true)}>show</button>
-       </div>
-       
-    {show && <div  className='cover-href'>
-         <div className='href'>
-         <div className='appear-btn'>
-         <button onClick={()=>setShow(false)}>hide</button>
-        </div>
-         <ul>
-        <li>
-                <div className='fit'>
-                <div className='fa'>
-<FaHome/>
-                </div>
-                        
-        <div className='link'>
-            <Link to='/' className='margin'>home</Link>
-            </div>
-                    </div>
-                 </li>
-                 <li>
-                 <div className='fit'>
-                 <div className='fa'>
-                    <FaInstagram/>
-                 </div>
-                 <div className='link'>
-                  <Link to='/about' className='margin'>about</Link>
-                   </div>
-                    </div>
-                    </li>
-                 <li>
-                 <div className='fit'>
-                 
-                        
-                    <div className='fa'>
-<FaTwitter/>
-                    </div>
-                     <div className='link'>
-                  <Link to='/port' className='margin'>portfolio</Link>
-                   </div>
-                   </div>
-                     </li>
-                 <li>
-                  <div className='fit'>
-                <div className='fa'>
-                     <FaFacebook/>
-                    </div>
-                    <div className='link'>
-                  <Link to='/contact' className='margin'>contact</Link>
-                </div>
-                 </div>
-                    
-                 </li>
-            </ul>
-            </div>
-            
-        </div>
+  const navRef=useRef()
+
+  const navFunction=()=>{
+    navRef.current.classList.toggle('dislocation-nav')
+  }
+  return(
+     <div>
+     <header>
+      <h1>blaqstix</h1>
+      <nav ref={navRef}>
+        <ul>
+          <li>
+       <Link to='/' onClick={navFunction}  className='each-nav'>Home</Link>
+          </li>
+           <li>
+            <Link to='/about' onClick={navFunction}  className='each-nav'>About Me</Link>
+          </li>
+           <li>
+            <Link to='/service' onClick={navFunction}  className='each-nav'>Service</Link>
+          </li>
+           <li>
+            <Link to='/Port' onClick={navFunction} className='each-nav'>Portfolio</Link>
+          </li>
+           <li>
+            <Link to='/contact' onClick={navFunction} className='each-nav'>Contact Me</Link>
+          </li>
+           <button className='nav-btn close' onClick={navFunction}>
+            <FaTimes/>
+           </button>
+        </ul>
+        </nav>
+        <button className='nav-btn open' onClick={navFunction}>
+            <FaBars/>
+           </button>
+           <button className='below-btn'>Hire Me</button>
       
-        }
-          </div> 
+     </header>
     </div>
-        
-    )
+  )
+      
 }
 
 
